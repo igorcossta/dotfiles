@@ -1,13 +1,23 @@
 #! /bin/bash
 
-# https://askubuntu.com/questions/1095057/how-to-revert-the-results-of-gsettings-set-org-gnome-desktop-command
-
 # update repositories and install dependencies
 
 sudo dnf update && sudo dnf install curl git gsettings
 
 CURRENT_DIR="$( cd "$( dirname "$0" )" && pwd )"
 
-source "${CURRENT_DIR}/script/colors.sh"
-source "${CURRENT_DIR}/script/theme.sh"
-source "${CURRENT_DIR}/script/zsh.sh"
+# create temporary folder
+if [ ! -d "${HOME}/.temp_files" ]; then
+    echo "creating temporary dir"
+    mkdir ${HOME}/.temp_files
+fi
+
+source "${CURRENT_DIR}/script/cursor.sh"
+source "${CURRENT_DIR}/script/icon.sh"
+source "${CURRENT_DIR}/script/gtk-shell.sh"
+
+# delete temporary folder
+if [ -d "${HOME}/.temp_files" ]; then
+    echo "deleting temporary dir"
+    rm -r ${HOME}/.temp_files
+fi
