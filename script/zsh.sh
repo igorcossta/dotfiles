@@ -4,15 +4,6 @@
 #	install zsh and the dependencies
 #
 
-#
-# //dark
-# alias dark='gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark \
-# && gsettings set org.gnome.desktop.interface color-scheme prefer-dark'
-# //light
-# alias light='gsettings set org.gnome.desktop.interface gtk-theme Adwaita \
-# && gsettings set org.gnome.desktop.interface color-scheme prefer-light'
-#
-
 if [ ! -f /bin/zsh ]; then	
 	# install zsh
 	sudo dnf install zsh
