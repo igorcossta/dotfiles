@@ -11,6 +11,11 @@
 
 this dotfiles install a environment for Java development and change the default GNOME theme
 
+<details>
+<summary>Click here to show the GTK Theme</summary>
+<img src="https://images.pling.com/img/00/00/32/24/44/1891521/nephrite-gtk-theme-g1086.png" alt="Linux Post Install" align="left"/>
+</details>
+
 ## Installation
 
 ### Installation script
