@@ -25,10 +25,18 @@ if [ ! -d "${DEST_FILE}/${GTK_NAME}" ]; then
    gsettings set org.gnome.desktop.interface color-scheme 'default'
 
    # link libadwaita (gnome 42+)
-   mkdir -p "${HOME}/.config/gtk-4.0"
-   ln -sf "${DEST_FILE}/${GTK_NAME}/gtk-4.0/assets" "${HOME}/.config/gtk-4.0/assets"
-   ln -sf "${DEST_FILE}/${GTK_NAME}/gtk-4.0/gtk.css" "${HOME}/.config/gtk-4.0/gtk.css"
-   ln -sf "${DEST_FILE}/${GTK_NAME}/gtk-4.0/gtk-dark.css" "${HOME}/.config/gtk-4.0/gtk-dark.css"
+    if [[ "$(command -v gnome-shell)" ]]; then
+        SHELL_VERSION="$(gnome-shell --version | cut -d ' ' -f 3 | cut -d . -f -1)"
+        if [[ $SHELL_VERSION -lt 42 ]]; then
+            echo 'SKIPING LINK LIBADWAITA PROCCESS (GNOME 42^)'
+        else
+            echo 'LINK LIBADWAITA PROCCESS STARTED'
+            mkdir -p "${HOME}/.config/gtk-4.0"
+            ln -sf "${DEST_FILE}/${GTK_NAME}/gtk-4.0/assets" "${HOME}/.config/gtk-4.0/assets"
+            ln -sf "${DEST_FILE}/${GTK_NAME}/gtk-4.0/gtk.css" "${HOME}/.config/gtk-4.0/gtk.css"
+            ln -sf "${DEST_FILE}/${GTK_NAME}/gtk-4.0/gtk-dark.css" "${HOME}/.config/gtk-4.0/gtk-dark.css"
+        fi
+    fi
 else
 	echo "${GTK_NAME} theme is already installed!"
 fi
